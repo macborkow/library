@@ -6,20 +6,23 @@
 	<link rel='stylesheet' href='style.css' type='text/css'>
 </head>
 <body>
-	<table>
+	<table id = "booktable">
 		<tr>
 			<th>Author</th>
 			<th>Title</th>
 			<th>Pages</th>
 			<th>Read</th>
+			<th class='removeth'></th>
 		</tr>
 		<tr>
 			<td>Tolkien</td>
 			<td>Hobbit</td>
 			<td>3000</td>
-			<td>No</td>
+			<td><button>No</button></td>
+			<td class='removetd'><button class = "remover">-</button></td>
 		</tr>
+		
 	</table>
-	<button>Add new book</button>
+	<button id = "adder">+</button>
 	<script src="index.js"></script>
 </body>
