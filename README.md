@@ -1,2 +1,2 @@
 # library
-Library for The Odin Project.
+Library for [The Odin Project](https://www.theodinproject.com/).
