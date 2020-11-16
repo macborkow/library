@@ -6,6 +6,8 @@
 	<link rel='stylesheet' href='style.css' type='text/css'>
 </head>
 <body>
+	<div id="dimmer">
+	</div>
 	<table id = "booktable">
 		<tr>
 			<th>Author</th>
@@ -16,6 +18,16 @@
 		</tr>
 		
 	</table>
+	<div id="popup">
+		<input type="text" placeholder='Author' id='inauthor'>
+		<input type="text" placeholder='Title' id='intitle'>
+		<input type="number" id='inpages' placeholder='Number of pages'>
+		<div>
+			<input type="checkbox" id='inread' name='read'>
+			<label for='inread'>Have you read it?</label>
+		</div>
+		<button id="submitBut">Submit</button>
+	</div>
 	<button id = "adder">+</button>
 	<script src="index.js"></script>
 </body>

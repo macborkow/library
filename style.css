@@ -70,3 +70,28 @@ button:focus {
 	border: 0;
 	outline: none;
 }
+
+#popup {
+	display: flex;
+	visibility: hidden;
+	flex-flow: column;
+	position: fixed;
+	width: 20%;
+	background-color: white;
+	left: 40%;
+	top: 15%;
+	z-index: 2;
+}
+
+#dimmer {
+	background-color: rgba(0,0,0, 0.7);
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100vw;
+	height: 100vh;
+	margin: 0;
+	padding: 0;
+	z-index: 1;
+	visibility: hidden;
+}

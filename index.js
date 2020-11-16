@@ -4,8 +4,14 @@ let offset = 0;
 let tr = [];
 let td = [];
 let butR = [];
+let but = [];
 const table = document.querySelector('#booktable');
 const adder = document.querySelector('#adder');
+const popup = document.querySelector('#popup');
+const dimmer = document.querySelector('#dimmer');
+const submitBut = document.querySelector('#submitBut');
+
+submitBut.addEventListener('click', submitBook);
 
 function Book(title, author, numPages, read, id) {
 	this.title = title;
@@ -34,9 +40,14 @@ function addBookToLibrary(title, author, pages, read) {
 			case 1: temp = myLibrary[bookId].title; td[bookId][i].textContent = temp; break;
 			case 2: temp = myLibrary[bookId].numPages; td[bookId][i].textContent = temp; break;
 			case 3: myLibrary[bookId].read?temp="Yes":temp="No"; 
-			let but = document.createElement('button');
-			td[bookId][i].appendChild(but);
-			but.textContent = temp;
+			but[bookId] = document.createElement('button');
+			td[bookId][i].appendChild(but[bookId]);
+			but[bookId].textContent = temp;
+			but[bookId].dataset.id = bookId;
+			let butt = but[bookId];
+			but[bookId].addEventListener('click', () => {
+				changeRead(butt.dataset.id);
+			});
 			break;
 			case 4: temp = '-';
 			td[bookId][i].classList.add('removetd');
@@ -67,9 +78,25 @@ function shuffle(id) {
 		}
 		
 	})
+	
+}
+
+function changeRead(id) {
+	if(but[id].textContent == "Yes") {
+		but[id].textContent = 'No';
+	} else {
+		but[id].textContent = 'Yes';
+	}
 }
 
 adder.addEventListener('click', () => {
-	addBookToLibrary("The Hobbit", "J.R.R. Tolkien", bookId, false);
+	popup.style.visibility = 'visible';
+	dimmer.style.visibility = 'visible';
 });
+
+function submitBook() {
+	addBookToLibrary("The Hobbit", "J.R.R. Tolkien", bookId, false);
+	popup.style.visibility = 'hidden';
+	dimmer.style.visibility = 'hidden';
+}
 
