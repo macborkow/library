@@ -1,14 +1,18 @@
 let myLibrary = [];
 let bookId = 0;
+let offset = 0;
 let tr = [];
 let td = [];
+let butR = [];
 const table = document.querySelector('#booktable');
+const adder = document.querySelector('#adder');
 
-function Book(title, author, numPages, read) {
+function Book(title, author, numPages, read, id) {
 	this.title = title;
 	this.author = author;
 	this.numPages = numPages;
 	this.read = read;
+	this.id = id;
 	this.info = function() {
 		let temp = "";
 		this.read?temp="read":temp="not read yet";
@@ -17,8 +21,8 @@ function Book(title, author, numPages, read) {
 }
 
 function addBookToLibrary(title, author, pages, read) {
-	myLibrary.push(new Book(title, author, pages, read));
-	console.log(myLibrary[myLibrary.length-1].info());
+	myLibrary[bookId] = new Book(title, author, pages, read, bookId);
+	console.log(myLibrary[bookId].info());
 	tr[bookId] = table.insertRow(bookId+1);
 	td[bookId] = [];
 	for(let i = 0;i < 5; ++i) {
@@ -36,10 +40,18 @@ function addBookToLibrary(title, author, pages, read) {
 			break;
 			case 4: temp = '-';
 			td[bookId][i].classList.add('removetd');
-			let butR = document.createElement('button');
-			td[bookId][i].appendChild(butR);
-			butR.textContent = temp;
-			butR.classList.add('remover');
+			butR[bookId] = document.createElement('button');
+			td[bookId][i].appendChild(butR[bookId]);
+			butR[bookId].textContent = temp;
+			butR[bookId].classList.add('remover');
+			butR[bookId].dataset.id = bookId+1;
+			let buttR = butR[bookId];
+			butR[bookId].addEventListener('click', () => {
+				table.deleteRow(buttR.dataset.id);
+				bookId--;	
+				shuffle(buttR.dataset.id);
+				myLibrary[buttR.dataset.id] = null;
+			});
 			break;
 		}
 		
@@ -47,5 +59,17 @@ function addBookToLibrary(title, author, pages, read) {
 	bookId++;
 }
 
-addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 295, false);
-addBookToLibrary("The Booba", "J.R.R. Poopa", 295, false);
+function shuffle(id) {
+	
+	butR.forEach( item => {
+		if(item.dataset.id >= id) {
+			item.dataset.id = item.dataset.id-1;
+		}
+		
+	})
+}
+
+adder.addEventListener('click', () => {
+	addBookToLibrary("The Hobbit", "J.R.R. Tolkien", bookId, false);
+});
+
