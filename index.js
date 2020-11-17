@@ -10,6 +10,10 @@ const adder = document.querySelector('#adder');
 const popup = document.querySelector('#popup');
 const dimmer = document.querySelector('#dimmer');
 const submitBut = document.querySelector('#submitBut');
+const inAuthor = document.querySelector('#inauthor');
+const inTitle = document.querySelector('#intitle');
+const inPages = document.querySelector('#inpages');
+const inRead = document.querySelector('#inread');
 
 submitBut.addEventListener('click', submitBook);
 
@@ -95,7 +99,7 @@ adder.addEventListener('click', () => {
 });
 
 function submitBook() {
-	addBookToLibrary("The Hobbit", "J.R.R. Tolkien", bookId, false);
+	addBookToLibrary(inTitle.value, inAuthor.value, inPages.value, inRead.checked);
 	popup.style.visibility = 'hidden';
 	dimmer.style.visibility = 'hidden';
 }
