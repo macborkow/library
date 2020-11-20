@@ -95,3 +95,8 @@ button:focus {
 	z-index: 1;
 	visibility: hidden;
 }
+
+
+input[type=text], input[type=number] {
+	width: 98%;
+}
